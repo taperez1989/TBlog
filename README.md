@@ -8,7 +8,7 @@ challenge was to create a blog post site that had a login and logout feature as 
 
 video link: 
 
-repo link: 
+repo link: https://github.com/taperez1989/TBlog.git
 ##MIT License
 
 Copyright (c) 2024 taperez1989
