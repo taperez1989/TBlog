@@ -1,14 +1,14 @@
 const router = require("express").Router();
 const { Blog, User, Comment } = require("../models");
 const withAuth = require("../utils/auth");
-
+//localhost:3001
 router.get("/", async (req, res) => {
   try {
     const blogData = await Blog.findAll({
       include: [
         {
           model: User,
-          attributes: ["title"],
+          // attributes: ["title"],
         },
       ],
     });
@@ -24,40 +24,46 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/Blog/:id", withAuth, async (req, res) => {
+router.get("/blog/:id",  async (req, res) => {
   try {
-    const blogData = await blog.findbypk(req.params.id, {
+    
+    const blogData = await Blog.findByPk(req.params.id, {
       include: [
         {
+
           model: Comment,
           include: [{ model: User }],
         },
       ],
     });
     const blog = blogData.get({ plain: true });
+
     res.render("blog", {
       blog,
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
+    console.log(err)
     res.status(500).json(err);
   }
 });
 
 // Use withAuth middleware to prevent access to route
 router.get("/profile", withAuth, async (req, res) => {
+
   try {
     // Find the logged in user based on the session ID
-    const profileData = await User.findByPk(req.session.user_id, {
+    const profileData = await User.findByPk(req.session.userId, {
       attributes: { exclude: ["password"] },
-      include: [{ model: Blog }],
+      // include: [{ model: Blog }],
     });
 
     const profile = profileData.get({ plain: true });
-
+    console.log('==========================================');
+    console.log(profile);
     res.render("profile", {
       profile,
-      logged_in: true,
+      loggedIn: true,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -66,7 +72,7 @@ router.get("/profile", withAuth, async (req, res) => {
 
 router.get("/login", (req, res) => {
   // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
+  if (req.session.loggedIn) {
     res.redirect("/profile");
     return;
   }
