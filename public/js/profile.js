@@ -1,9 +1,9 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
 
-    const title = document.querySelector('#project-name').value.trim();
+    const title = document.querySelector('#blog-title').value.trim();
     // const comments = document.querySelector('#project-funding').value.trim();
-    const content = document.querySelector('#project-desc').value.trim();
+    const content = document.querySelector('#blog-content').value.trim();
 
     if (title && content) {
         const response = await fetch(`/api/profile`, {
@@ -13,7 +13,7 @@ const newFormHandler = async (event) => {
                 'Content-Type': 'application/json',
             },
         });
-
+        console.log(title,);
         if (response.ok) {
             document.location.replace('/profile');
         } else {

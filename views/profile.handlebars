@@ -10,20 +10,20 @@
 
     <form class="form new-project-form">
       <div class="form-group">
-        <label for="project-name"> Blog Title</label>
+        <label for="blog-title"> Blog Title</label>
         <input
           class="form-input"
           type="text"
-          id="project-name"
-          name="project-name"
+          id="blog-title"
+          name="blog-title"
         />
       </div>
       <div class="form-group">
-        <label for="project-desc">Contents:</label>
+        <label for="blog-content">Contents:</label>
         <textarea
           class="form-input"
-          id="project-desc"
-          name="project-desc"
+          id="blog-content"
+          name="blog-content"
         ></textarea>
       </div>
       <div class="form-group">
@@ -32,19 +32,19 @@
     </form>
   </div>
 
-  {{#if Blogs.length}}
+  {{#if blogs.length}}
     <div class="col-md-6 project-list">
      
 
-      {{#each Blogs as |Blog|}}
+      {{#each blogs as |blog|}}
         <div class="row mb-2">
           <div class="col-md-8">
-            <h4><a href="/blogs/{{Blog.id}}">{{Blog.title}}</a></h4>
+            <h4><a href="/blogs/{{blog.id}}">{{blog.title}}</a></h4>
           </div>
           <div class="col-md-4">
             <button
               class="btn btn-sm btn-danger"
-              data-id="{{Blog.id}}"
+              data-id="{{blog.id}}"
             >DELETE</button>
           </div>
         </div>
