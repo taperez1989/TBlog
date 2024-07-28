@@ -14,11 +14,11 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    comments: {
+    content: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userName: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },

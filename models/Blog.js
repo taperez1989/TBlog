@@ -22,10 +22,6 @@ Blog.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userName: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     dateCreated: {
       type: DataTypes.DATE,
       allowNull: false,
